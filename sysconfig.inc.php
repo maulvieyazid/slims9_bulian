@@ -373,8 +373,8 @@ $sysconf['reserve_direct_database'] = true;
 $sysconf['reserve_on_loan_only'] = false;
 
 /* CONTENT */
-$sysconf['library_name'] = 'Senayan';
-$sysconf['library_subname'] = 'Open Source Library Management System';
+$sysconf['library_name'] = 'Pustara';
+$sysconf['library_subname'] = 'Pustaka Nusantara';
 $sysconf['page_footer'] = ' Senayan Library Management System (SLiMS). Released Under GNU GPL License.<br>Made with love by SLiMS Developer Community';
 
 /* HTTPS Setting */
