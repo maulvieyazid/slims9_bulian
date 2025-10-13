@@ -594,20 +594,20 @@ $localisation->load(function($memory) use($dbs, &$sysconf) {
 require_once LIB . "helper.inc.php";
 
 $localisation->registerLanguages([
-    ['ar_SA', __('Arabic'), 'Arabic'],
-    ['bn_BD', __('Bengali'), 'Bengali'],
-    ['pt_BR', __('Brazilian Portuguese'), 'Brazilian Portuguese'],
+    // ['ar_SA', __('Arabic'), 'Arabic'],
+    // ['bn_BD', __('Bengali'), 'Bengali'],
+    // ['pt_BR', __('Brazilian Portuguese'), 'Brazilian Portuguese'],
     ['en_US', __('English'), 'English'],
-    ['es_ES', __('Espanol'), 'Espanol'],
-    ['de_DE', __('German'), 'Deutsch'],
+    // ['es_ES', __('Espanol'), 'Espanol'],
+    // ['de_DE', __('German'), 'Deutsch'],
     ['id_ID', __('Indonesian'), 'Indonesia'],
-    ['ja_JP', __('Japanese'), 'Japanese'],
-    ['ms_MY', __('Malay'), 'Malay'],
-    ['fa_IR', __('Persian'), 'Persian'],
-    ['ru_RU', __('Russian'), 'Russian'],
-    ['th_TH', __('Thai'), 'Thai'],
-    ['tr_TR', __('Turkish'), 'Turkish'],
-    ['ur_PK', __('Urdu'), 'Urdu']
+    // ['ja_JP', __('Japanese'), 'Japanese'],
+    // ['ms_MY', __('Malay'), 'Malay'],
+    // ['fa_IR', __('Persian'), 'Persian'],
+    // ['ru_RU', __('Russian'), 'Russian'],
+    // ['th_TH', __('Thai'), 'Thai'],
+    // ['tr_TR', __('Turkish'), 'Turkish'],
+    // ['ur_PK', __('Urdu'), 'Urdu']
 ]);
 
 // template info config
