@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Senayan3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-29 18:51+0700\n"
-"PO-Revision-Date: 2025-10-13 09:56+0800\n"
+"PO-Revision-Date: 2025-10-13 10:15+0800\n"
 "Last-Translator: Arif Syamsudin Budi W. <buitenzorg812@yahoo.com>\n"
 "Language-Team: Arie Nugraha; Hendro Wicaksono; Wardiyono <dicarve@yahoo.com; "
 "hendrowicaksono@yahoo.com; wynerst@gmail.com>\n"
@@ -10516,6 +10516,10 @@ msgstr "Masukkan kata kunci..."
 #: template/default/parts/_modal_biblio_qrcode.php:5
 msgid "Share QRCode"
 msgstr "Bagikan QRCode"
+
+#: template/default/detail_template.php:139
+msgid "Click this link to read"
+msgstr "Klik link ini untuk membaca"
 
 #~ msgid "Create database connection"
 #~ msgstr "Membuat koneksi pangkalan data"
