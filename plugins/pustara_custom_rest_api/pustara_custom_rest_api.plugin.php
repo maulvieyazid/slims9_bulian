@@ -18,4 +18,5 @@ $plugins->register('custom_api_route', function ($router) {
     require_once __DIR__ . '/controllers/CustomController.php';
     
     $router->map('GET', '/books/latest', 'CustomController@getLatestBooks');
+    $router->map('GET', '/activate/member/[*:token]', 'CustomController@activateMember');
 });

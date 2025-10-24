@@ -43,4 +43,27 @@ class CustomController extends Controller
 
         parent::withJson($response);
     }
+
+    public function activateMember($token)
+    {
+        // Decrypt token nya, kalau token tidak valid akan otomatis menampilkan halaman error
+        $memberId = decrypt($token);
+
+        // Kalau sudah dapat memberId, cek apakah memberId tersebut sudah aktif atau belum
+        $pdo = \SLiMS\DB::getInstance();
+        $stmt = $pdo->prepare("SELECT is_pending FROM member WHERE member_id = :member_id");
+        $is_pending = $stmt->execute(['member_id' => $memberId]) ? $stmt->fetchColumn() : null;
+
+        // Kalau is_pending bernilai 0 (sudah aktif), maka langsung lemparkan ke halaman login saja
+        if (!$is_pending) {
+            redirect('?p=member');
+        }
+
+        // Kalau belum aktif, maka update is_pending menjadi 0 (aktif)
+        $stmt = $pdo->prepare("UPDATE member SET is_pending = 0 WHERE member_id = :member_id");
+        $stmt->execute(['member_id' => $memberId]);
+
+        // Lalu arahkan ke halaman informasi akun berhasil diaktifkan
+        redirect('?p=activated_self_register');
+    }
 }

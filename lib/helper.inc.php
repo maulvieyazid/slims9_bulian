@@ -574,3 +574,97 @@ if (!function_exists('isSerialized')) {
         return true;
     }
 }
+
+if (!function_exists('base64url_encode')) {
+    function base64url_encode(string $data): string {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+}
+
+if (!function_exists('base64url_decode')) {
+    function base64url_decode(string $data): string {
+        $pad = 4 - (strlen($data) % 4);
+        if ($pad < 4) $data .= str_repeat('=', $pad);
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+}
+
+if (!function_exists('_get_simple_key')) {
+    function _get_simple_key(): string {
+        if (!extension_loaded('sodium')) {
+            throw new RuntimeException("libsodium tidak aktif.");
+        }
+        $raw = config('app.encryption_key');  // pastikan ini di-set
+
+        if (!$raw) {
+            throw new RuntimeException("Encryption Key kosong.");
+        }
+
+        // 1) coba base64
+        $b64 = base64_decode($raw, true);
+        if ($b64 !== false && strlen($b64) === SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_KEYBYTES) {
+            return $b64;
+        }
+        // 2) coba hex 64 chars
+        if (preg_match('/^[0-9a-fA-F]{64}$/', $raw)) {
+            $bin = hex2bin($raw);
+            if ($bin !== false && strlen($bin) === SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_KEYBYTES) {
+                return $bin;
+            }
+        }
+        // 3) anggap raw binary langsung
+        if (strlen($raw) === SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_KEYBYTES) {
+            return $raw;
+        }
+
+        throw new RuntimeException("Encryption key tidak valid. Harus 32 byte (raw) atau base64(32) atau hex(64).");
+    }
+}
+
+
+if (!function_exists('encrypt')) {
+    function encrypt(string $message): string {
+        $key = _get_simple_key();
+
+        $nonce = random_bytes(SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_NPUBBYTES);
+        // tanpa AD supaya super simpel
+        $cipher = sodium_crypto_aead_xchacha20poly1305_ietf_encrypt(
+            $message,
+            '',      // no associated data
+            $nonce,
+            $key
+        );
+
+        return base64url_encode($nonce . $cipher);
+    }
+}
+
+if (!function_exists('decrypt')) {
+    function decrypt(string $token): string {
+        $key     = _get_simple_key();
+        $packed  = base64url_decode($token);
+        $nlen    = SODIUM_CRYPTO_AEAD_XCHACHA20POLY1305_IETF_NPUBBYTES;
+
+        if ($packed === false || strlen($packed) <= $nlen) {
+            throw new RuntimeException("Token tidak valid atau rusak.");
+        }
+
+        $nonce  = substr($packed, 0, $nlen);
+        $cipher = substr($packed, $nlen);
+
+        $plain = sodium_crypto_aead_xchacha20poly1305_ietf_decrypt(
+            $cipher,
+            '',
+            $nonce,
+            $key
+        );
+
+        if ($plain === false) {
+            throw new RuntimeException("Gagal dekripsi. Token mungkin salah atau kunci tidak cocok.");
+        }
+
+        return $plain; // ini langsung isi pesan asli
+    }
+}
+
+
