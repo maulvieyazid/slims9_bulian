@@ -33,7 +33,7 @@ $(document).ready(() => {
         $.ajax({
             method: 'POST',
             url: 'index.php?p=member',
-            data: {biblio: [biblioId], callback: 'json'}
+            data: { biblio: [biblioId], callback: 'json' }
         })
             .done(function (data) {
                 if (data.status) {
@@ -54,27 +54,27 @@ $(document).ready(() => {
             })
     })
 
-    $('.bookMarkBook').click(function(e){
+    $('.bookMarkBook').click(function (e) {
         e.preventDefault()
         if ($(this).hasClass('bg-success')) return;
 
         let id = $(this).data('id')
-        $.post('index.php?p=member&sec=bookmark', {bookmark_id: id, callback: 'json'}, (res,state,http) => {
+        $.post('index.php?p=member&sec=bookmark', { bookmark_id: id, callback: 'json' }, (res, state, http) => {
             let classAttr = $(this).data('detail') === undefined ? 'bg-success text-white rounded-lg' : 'bg-success text-white rounded-lg px-2 py-1'
             $(this).removeClass('text-secondary').addClass(classAttr)
             $('#label-' + id).html(res.label)
             toastr.success(res.message)
-        }).fail(function(state){
+        }).fail(function (state) {
             toastr.error(state.responseJSON.message, '', {
                 timeOut: 2000,
-                onHidden: function() {
+                onHidden: function () {
                     window.location.replace('index.php?p=member&destination=' + encodeURIComponent(window.location.href + '#card-' + id))
                 }
             })
         })
     })
 
-    $('a[data-target="#mediaSocialModal"]').click(function(){
+    $('a[data-target="#mediaSocialModal"]').click(function () {
         let id = encodeURIComponent($(this).data('id'))
         let title = encodeURIComponent($(this).data('title').replace(/<\/?[^>]+(>|$)/g, "").replace(/\"|\'/i, ''))
         $('#mediaSocialModalBody').html(`<iframe src="?p=sharelink&id=${id}&title=${title}" class="w-100" style="height: 5.5rem"></iframe>`)
@@ -83,9 +83,9 @@ $(document).ready(() => {
     let oembed = $('oembed')
 
     if (oembed.length > 0) {
-        oembed.each(function(index,el){
+        oembed.each(function (index, el) {
             let urlSrc = $(el).attr('url').replace('watch?v=', 'embed/')
-            $('figure.media').append('<iframe style="width: 100%; height: '+(window.innerHeight - 200)+'px" src="' + urlSrc + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')  
+            $('figure.media').append('<iframe style="width: 100%; height: ' + (window.innerHeight - 200) + 'px" src="' + urlSrc + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>')
         })
     }
 
@@ -103,4 +103,20 @@ $(document).ready(() => {
 // remove &nbsp in pagging
 $('.biblioPaging .pagingList').html(function (i, h) {
     return h.replace(/&nbsp;/g, '');
+});
+
+$('a.share-page-qrcode').click(function (e) {
+    e.preventDefault();
+
+    // Get the current URL
+    const url = new URL(window.location.href);
+    // Remove query parameters
+    url.search = '';
+
+    // Construct the new URL with the desired parameters
+    url.searchParams.set('p', 'page_qrcode');
+
+    // Open the new URL in an iframe inside a biblio qrcode Modal
+    parent.$("#biblioQrcodeModalBody").html('<iframe id="frameQrcodeBiblio" style="border:none;width:100%;height:300px;" src="' + url.toString() + '"></iframe>')
+    parent.$("#biblioQrcodeModal").modal('show');
 });

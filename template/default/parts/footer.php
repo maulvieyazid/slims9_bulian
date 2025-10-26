@@ -36,8 +36,8 @@
               <?php } ?>
                 <div class="mb-4"><?php echo $sysconf['library_name']; ?></div>
                 <ul class="list-reset">
-                    <li><a class="text-light" href="index.php?p=libinfo"><?= __('Information'); ?></a></li>
-                    <li><a class="text-light" href="index.php?p=services"><?= __('Services'); ?></a></li>
+                    <li><a class="text-light share-page-qrcode" href="#"><?= __('Share Page QRCode'); ?></a></li>
+                    <!-- <li><a class="text-light" href="index.php?p=services"><?= __('Services'); ?></a></li> -->
                     <li><a class="text-light" href="index.php?p=librarian"><?= __('Librarian'); ?></a></li>
                     <li><a class="text-light" href="index.php?p=member"><?= __('Member Area'); ?></a></li>
                 </ul>

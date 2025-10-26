@@ -14,4 +14,5 @@ use SLiMS\Plugins;
 $plugins = Plugins::getInstance();
 
 /* WARNING : JANGAN LUPA MENGAKTIFKAN PLUGIN NYA DI OPAC */
-$plugins->registerMenu('opac', 'share qrcode', __DIR__ . '/views/biblio_qrcode.inc.php');
+$plugins->registerMenu('opac', 'share_qrcode', __DIR__ . '/views/biblio_qrcode.inc.php');
+$plugins->registerMenu('opac', 'page_qrcode', __DIR__ . '/views/page_qrcode.inc.php');
