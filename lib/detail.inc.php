@@ -280,7 +280,7 @@ HTML;
                     {$item_code}
                 </div>
                 <div class="col-3 border border-gray-300 p-3">
-                  <b class="text-sm availability-item {$avail_class}">{$avail_status}</b>
+                  <b class="text-sm badge badge-pill text-white {$avail_class}">{$avail_status}</b>
                 </div>
             </div>
         HTML;
