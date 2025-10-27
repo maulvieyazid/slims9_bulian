@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert ke tabel member
     $pdo = DB::getInstance();
-    $stmt = $pdo->prepare("INSERT IGNORE INTO MEMBER (
+    $stmt = $pdo->prepare("INSERT IGNORE INTO member (
                                 member_id,
                                 member_name,
                                 gender,

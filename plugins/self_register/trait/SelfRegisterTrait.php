@@ -36,7 +36,7 @@ if (!function_exists('sendMemberActivationEmail')) {
     {
         // Select email dan nama member berdasarkan memberId
         $pdo = \SLiMS\DB::getInstance();
-        $stmt = $pdo->prepare("SELECT member_email, member_name FROM MEMBER WHERE member_id = :member_id");
+        $stmt = $pdo->prepare("SELECT member_email, member_name FROM member WHERE member_id = :member_id");
         $stmt->execute([':member_id' => $memberId]);
         $member = $stmt->fetch(PDO::FETCH_OBJ);
 
