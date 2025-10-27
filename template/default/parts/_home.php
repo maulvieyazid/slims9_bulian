@@ -29,27 +29,27 @@
     <h4 class="text-secondary text-center text-thin mt-5 mb-4"><?php echo __('Select the topic you are interested in'); ?></h4>
     <ul class="topic d-flex flex-wrap justify-content-center px-0">
         <li class="d-flex justify-content-center align-items-center m-2">
-            <a href="index.php?callnumber=8&search=search" class="d-flex flex-column">
-                <img src="<?php echo assets('images/8-books.png'); ?>" width="80" class="mb-3 mx-auto"/>
-                <?php echo __('Literature'); ?>
+            <a href="index.php?subject='Smart+City'&search=search" class="d-flex flex-column">
+                <img src="<?php echo assets('images/10-smart-city.png'); ?>" width="80" class="mb-3 mx-auto"/>
+                <?php echo __('Smart City'); ?>
             </a>
         </li>
         <li class="d-flex justify-content-center align-items-center m-2">
-            <a href="index.php?callnumber=3&search=search" class="d-flex flex-column">
-                <img src="<?php echo assets('images/3-diploma.png'); ?>" width="80" class="mb-3 mx-auto"/>
-                <?php echo __('Social Sciences'); ?>
+            <a href="index.php?subject='Forest+City'&search=search" class="d-flex flex-column">
+                <img src="<?php echo assets('images/11-forest-city.png'); ?>" width="80" class="mb-3 mx-auto"/>
+                <?php echo __('Forest City'); ?>
             </a>
         </li>
         <li class="d-flex justify-content-center align-items-center m-2">
-            <a href="index.php?callnumber=6&search=search" class="d-flex flex-column">
-                <img src="<?php echo assets('images/6-blackboard.png'); ?>" width="80" class="mb-3 mx-auto"/>
-                <?php echo __('Applied Sciences'); ?>
+            <a href="index.php?subject='Smart+Building'&search=search" class="d-flex flex-column">
+                <img src="<?php echo assets('images/12-smart-building.png'); ?>" width="80" class="mb-3 mx-auto"/>
+                <?php echo __('Smart Building'); ?>
             </a>
         </li>
         <li class="d-flex justify-content-center align-items-center m-2">
-            <a href="index.php?callnumber=7&search=search" class="d-flex flex-column">
-                <img src="<?php echo assets('images/7-quill.png'); ?>" width="80" class="mb-3 mx-auto"/>
-                <?php echo __('Art & Recreation'); ?>
+            <a href="index.php?subject='Smart+Water'&search=search" class="d-flex flex-column">
+                <img src="<?php echo assets('images/13-smart-water.png'); ?>" width="80" class="mb-3 mx-auto"/>
+                <?php echo __('Smart Water'); ?>
             </a>
         </li>
         <li class="d-flex justify-content-center align-items-center m-2">
