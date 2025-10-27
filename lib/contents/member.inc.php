@@ -1017,12 +1017,12 @@ if ($is_member_login) :
     </script>
 <?php else: ?>
     <div>
-        <div class="tagline"><?php echo __('Library Member Login'); ?></div>
+        <div class="tagline mb-0"><?php echo __('Library Member Login'); ?></div>
         <div class="loginInfo">
             <?php 
             if (flash()->isEmpty())
             {
-                echo __('Please insert your member ID and password given by library system administrator. If you are library\'s member and don\'t have a password yet, please contact library staff.'); 
+                // echo __('Please insert your member ID and password given by library system administrator. If you are library\'s member and don\'t have a password yet, please contact library staff.'); 
             }
             elseif ($key = flash()->includes('wrong_password','csrf_failed','empty_field','captchaInvalid'))
             {
@@ -1053,6 +1053,7 @@ if ($is_member_login) :
                 </div>
                 <!-- Captcha in form - end -->
                 <input type="submit" name="logMeIn" value="<?php echo __('Login'); ?>" class="memberButton"/>
+                <p class="mt-2"><?= __("Don't have a member account yet?") ?> <a href="index.php?p=self_register"><?= __('Register here'); ?></a></p>
             </form>
         </div>
     </div>
